@@ -112,28 +112,48 @@ function createDots() {
   });
 }
 
+
 function showPhoto(index) {
   if (photos.length === 0) return;
-  currentPhoto = (index + photos.length) % photos.length;
-  const selected = photos[currentPhoto];
+
+  const nextIndex = ((index % photos.length) + photos.length) % photos.length;
+  const selected = photos[nextIndex];
 
   clearTimeout(photoChangeTimer);
+
+  const newImage = new Image();
+
   photo.classList.add("fade");
 
-  photoChangeTimer = setTimeout(() => {
-    photo.src = selected.src;
+  newImage.onload = () => {
+    currentPhoto = nextIndex;
+
+    photo.src = newImage.src;
     photo.alt = selected.caption;
     caption.textContent = selected.caption;
-    counter.textContent = `Photo ${currentPhoto + 1} of ${photos.length}`;
+
+    counter.textContent =
+      `Photo ${currentPhoto + 1} of ${photos.length}`;
 
     dots.querySelectorAll("button").forEach((dot, i) => {
       dot.classList.toggle("active", i === currentPhoto);
-      dot.setAttribute("aria-current", i === currentPhoto ? "true" : "false");
+      dot.setAttribute(
+        "aria-current",
+        i === currentPhoto ? "true" : "false"
+      );
     });
 
     photo.classList.remove("fade");
-  }, 180);
+  };
+
+  newImage.onerror = () => {
+    console.error("Photo loading failed:", selected.src);
+    photo.classList.remove("fade");
+  };
+
+  newImage.src = selected.src;
 }
+
 
 prevBtn.addEventListener("click", () => {
   showPhoto(currentPhoto - 1);
