@@ -166,7 +166,6 @@ nextBtn.addEventListener("click", () => {
 });
 
 memoriesButton.addEventListener("click", () => {
-  startSlideshow();
   switchMusic(memoriesMusic);
 });
 
@@ -316,4 +315,20 @@ document.addEventListener("dragstart", function (event) {
     event.preventDefault();
   }
 });
+const memoriesSection = document.getElementById("memories");
+
+const memoriesObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      startSlideshow();
+    } else {
+      slideshowEnabled = false;
+      clearInterval(slideTimer);
+    }
+  });
+}, {
+  threshold: 0.3
+});
+
+memoriesObserver.observe(memoriesSection);
 
