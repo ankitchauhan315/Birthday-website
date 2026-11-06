@@ -207,7 +207,7 @@ function startSlideshow() {
 function resetSlideshowTimer() {
   clearInterval(slideTimer);
   if (slideshowEnabled && photos.length > 1) {
-    slideTimer = setInterval(() => showPhoto(currentPhoto + 1), 6000);
+    slideTimer = setInterval(() => showPhoto(currentPhoto + 1), 4000);
   }
 }
 
