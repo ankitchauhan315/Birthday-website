@@ -319,12 +319,21 @@ const memoriesSection = document.getElementById("memories");
 
 const memoriesObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      startSlideshow();
-    } else {
-      slideshowEnabled = false;
-      clearInterval(slideTimer);
-    }
+  if (entry.isIntersecting) {
+  startSlideshow();
+
+  if (memoriesMusic.paused) {
+    switchMusic(memoriesMusic);
+  }
+} else {
+  slideshowEnabled = false;
+  clearInterval(slideTimer);
+
+  if (!memoriesMusic.paused) {
+    memoriesMusic.pause();
+    memoryMusicBtn.textContent = "▶ Memory Song: Off";
+  }
+}
   });
 }, {
   threshold: 0.3
