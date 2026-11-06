@@ -34,6 +34,8 @@ const photo = document.getElementById("photo");
 const caption = document.getElementById("caption");
 const dots = document.getElementById("dots");
 const counter = document.getElementById("counter");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
 const memoriesButton = document.getElementById("memoriesButton");
 const birthdayMusic = document.getElementById("birthdayMusic");
 const memoriesMusic = document.getElementById("memoriesMusic");
@@ -151,6 +153,18 @@ function showPhoto(index) {
 
   newImage.src = selected.src;
 }
+
+// Previous photo button
+prevBtn.addEventListener("click", () => {
+  showPhoto(currentPhoto - 1);
+  resetSlideshowTimer();
+});
+
+// Next photo button
+nextBtn.addEventListener("click", () => {
+  showPhoto(currentPhoto + 1);
+  resetSlideshowTimer();
+});
 
 
 memoriesButton.addEventListener("click", () => {
