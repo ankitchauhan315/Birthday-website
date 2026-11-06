@@ -300,3 +300,20 @@ function createConfetti() {
     setTimeout(() => piece.remove(), 4000);
   }
 }
+
+document.addEventListener("contextmenu", function (event) {
+  if (event.target.tagName === "IMG") {
+    event.preventDefault();
+  }
+});
+
+document.querySelectorAll("img").forEach((img) => {
+  img.setAttribute("draggable", "false");
+});
+
+document.addEventListener("dragstart", function (event) {
+  if (event.target.tagName === "IMG") {
+    event.preventDefault();
+  }
+});
+
