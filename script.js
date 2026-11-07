@@ -21,6 +21,7 @@ const photos = [
   { src: "Photo1.jpeg", caption: "First Memory 💜" },
   { src: "Photo5.jpeg", caption: "Forever Special ✨" },
   { src: "Photo33.jpeg", caption: "Another Beautiful Memory 💜" }
+  { src: "Photo34.jpeg", caption: "Another Beautiful Memory 💜" }
 ];
 
 
